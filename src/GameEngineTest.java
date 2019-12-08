@@ -20,7 +20,7 @@ public class GameEngineTest {
         GameEngine americanFlag = new GameEngine(background, flagPart1, flagPart2, flagPart3, flagPart4, flagPart5, stars);
         americanFlag.setDisplaySize(50, 25);
         RenderHandler RHFlag = new RenderHandler(americanFlag);
-        RHFlag.setFPS(0);
+        RHFlag.setFPS(0); //Only render it once
         
         /*
          * DEMO 2: RECTANGLE SCROLLING
@@ -36,19 +36,34 @@ public class GameEngineTest {
          */
         
         //Setup onEnd events so that demo runs one after another
-        RHFlag.setOnEnd(new Callable<Void>() {
-			public Void call() {
-				System.out.println("RenderFlag ended");
-				RHScroll.renderFor(5000);
+        class OnEndEvents { //Class to store onEnd events
+        	public Void EndFlag() {
+        		System.out.println("RenderFlag ended");
+    			RHScroll.renderFor(10000);
+    			return null;
+        	}
+        	public Void EndScroll() {
+        		System.out.println("Render ended");
 				return null;
-			}
-		});
-        RHScroll.setOnEnd(new Callable<Void>() {
-			public Void call() {
-				System.out.println("Render ended");
-				return null;
-			}
-		});
+        	}
+        }
+        OnEndEvents endEvents = new OnEndEvents(); //instantiate
+        RHFlag.setOnEnd(endEvents::EndFlag); //pass using lambda
+        RHScroll.setOnEnd(endEvents::EndScroll);
+        
+        class OnFrameEvents { //Class to store onFrame events
+        	public Void FrameFlag(int fCount) {
+    			Position rectPos = rect.getPosition();
+        		if (fCount < 10) {
+        			rect.setPosition(rectPos.x+1, rectPos.y+1);
+        		} else {
+        			rect.setPosition(rectPos.x-1, rectPos.y-1);
+        		}
+    			return null;
+        	}
+        }
+        OnFrameEvents frameEvents = new OnFrameEvents();
+        RHScroll.setOnFrame(frameEvents::FrameFlag);
         
         //Start first demo
         RHFlag.renderFor(3000);
