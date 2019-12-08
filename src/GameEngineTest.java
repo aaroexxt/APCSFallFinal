@@ -59,24 +59,31 @@ public class GameEngineTest {
         /*
          * DEMO 4: SIMPLE SCENE ANIMATION
          */
-        BitMap player = new BitMap();
-        BitMap background = new BitMap();
-        String[] hoopAndCourt = {
-        		"         -----------",
-        		"         |         |",
-        		"         |   ----  |",
-        		"         |   |  |  |",
-        		"         |   ----  |",
-        		"         ----   ----",
-        		"             |  |",
-        		"             |  |",
-        		"             |  |",
-        		"             |  |",
-        		"             |  |",
-        		"----------------------------"
-        };
-        background.setStringTable(hoopAndCourt);
-        GameEngine sceneTest = new GameEngine(background, player);
+//        BitMap player = new BitMap();
+//        String 
+//        BitMap background = new BitMap();
+//        String[] hoopAndCourt = {
+//        		"         -----------",
+//        		"         |         |",
+//        		"         |   ----  |",
+//        		"         |   |  |  |",
+//        		"         |   ----  |",
+//        		"         ----   ----",
+//        		"             |  |",
+//        		"             |  |",
+//        		"             |  |",
+//        		"             |  |",
+//        		"             |  |",
+//        		"----------------------------"
+//        };
+//        background.setStringTable(hoopAndCourt);
+//        GameEngine sceneTest = new GameEngine(background, player);
+        
+        /*
+         * DEMO 5: COMPLEX SCENE ANIMATION
+         */
+        
+        
         
         /*
          * SETUP DEMO LINKING
