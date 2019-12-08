@@ -35,7 +35,7 @@ public class GameEngine {
         for (Object s : shapePassIn) { //Add shapes into object array
             shapes.add(s);
         }
-        System.out.println("AaronGameEngineV1:"); //Fix for BlueJ putting a random space in the beginning of every line
+        clearTerminal(); //Fix for BlueJ putting a random space in the beginning of every line
     }
 
     public void setDisplaySize(int width, int height) {
@@ -193,7 +193,10 @@ public class GameEngine {
     */
 
     public void clearTerminal() {
-        System.out.print('\u000C');
+        //System.out.print('\u000C');
+    	for (int i=0; i<height; i++) {
+    		System.out.println();
+    	}
     }
     
     /*

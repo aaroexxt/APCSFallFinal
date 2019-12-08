@@ -2,15 +2,16 @@ import java.util.concurrent.*;
 import java.util.function.*;
 
 public class RenderHandler {
-	private GameEngine g;
-	private int fps;
-	private int frameCount;
+	private GameEngine g; //GameEngine object to keep track of
+	private int fps; //Render fps - 0 is "freeze frame"
+	private int frameCount; //How many frames have been rendered
 	
-	private Supplier<Void> onEnd;
+	private Supplier<Void> onEnd; //onEnd function - runs when render is finished. Supplier type because no args
 	private boolean onEndDefined = false;
 	
-	private Function<Integer,Void> onFrame;
+	private Function<Integer,Void> onFrame; //onFrame function - runs every frame, takes FrameCount as an argument
 	private boolean onFrameDefined = false;
+	//Create the scheduler
 	final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 	
 	public RenderHandler(GameEngine g) {

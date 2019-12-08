@@ -1,33 +1,150 @@
+public class Triangle {
+    //Basic parameters; height width and length as well as what character to fill with
+    private int width;
+    private int height;
+    private char fillChar = '*';
+    private boolean filled;
 
-/**
- * Write a description of class Triangle here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class Triangle
-{
-    // instance variables - replace the example below with your own
-    private int x;
+    //charTable and StringTable for rendering
+    private char[][] charTableInternal;
+    private String[] stringTableInternal;
 
-    /**
-     * Constructor for objects of class Triangle
-     */
-    public Triangle()
-    {
-        // initialise instance variables
-        x = 0;
+    //Positional coordinates on the screen with (0, 0) at top left
+    private Position position = new Position();
+
+    /*
+    * CONSTRUCTORS
+    */
+    public Triangle() {
+        width = 40;
+        height = 10;
+        filled = true;
+
+        //charTableInternal = new char[height][width]; //Not needed right now because of no collision detection
+        //regenCharTable(); //Not needed right now because of no collision detection
+
+        stringTableInternal = new String[height];
+        regenStringTable();
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+    public Triangle(int x, int y, int width, int height, boolean filled) {
+        this.width = width*2; //because height is x2 in java, multiply width by 2
+        this.height = height;
+        this.filled = filled;
+
+        //charTableInternal = new char[height][width]; //Not needed right now because of no collision detection
+        //regenCharTable(); //Not needed right now because of no collision detection
+
+        stringTableInternal = new String[height];
+        regenStringTable();
+
+        position.setPosition(x,y); //update position onscreen
+    }
+
+    /*
+    * Getters/Setters
+    */
+
+    public int getWidth() {
+        return width;
+    }
+    public void setWidth(int newWidth) {
+        width = newWidth;
+        regenStringTable();
+    }
+
+    public int getHeight() {
+        return height;
+    }
+    public void setHeight(int newHeight) {
+        height = newHeight;
+        regenStringTable();
+    }
+
+    public char getFillChar() {
+        return fillChar;
+    }
+    public void setFillChar(char newChar) {
+        fillChar = newChar;
+        regenStringTable();
+    }
+
+    public boolean getFilled() {
+        return filled;
+    }
+    public void setFilled(boolean isFilled) {
+        filled = isFilled;
+        regenStringTable();
+    }
+
+    /*
+    * StringTable/CharTable implementation (mesh geometry)
+    */
+
+    public char[][] regenCharTable() {
+        char[][] charTable = new char[height][width];
+        for (int i=0; i<height; i++) {
+            for (int j=0; j<width; j++) {
+                if (filled) {
+                    charTable[i][j] = fillChar;
+                } else {
+                    if ((i == 0 || i == height) && (j == 0 || j ==width)) {
+                        charTable[i][j] = fillChar;
+                    } else {
+                        charTable[i][j] = ' '; //otherwise fill with space
+                    }
+                }
+            }
+        }
+        charTableInternal = charTable; //set internal char table to what we just generated
+        return charTable; //and return
+    }
+
+    public char[][] getCharTable() {
+        return charTableInternal;
+    }
+
+    public String[] regenStringTable() {
+        String[] stringTable = new String[height];
+        for (int i=0; i<height; i++) {
+            stringTable[i] = "";
+            for (int j=0; j<width; j++) {
+                if (filled) {
+                    stringTable[i] += fillChar;
+                } else {
+                    if ((i == 0 || i == height) && (j == 0 || j == width)) {
+                        stringTable[i] += fillChar;
+                    } else {
+                        stringTable[i] += " "; //otherwise fill with space
+                    }
+                }
+            }
+        }
+        stringTableInternal = stringTable;
+        return stringTable;
+    }
+
+    public String[] getStringTable() {
+        return stringTableInternal;
+    }
+
+    /*
+     * GetPosition
+    */
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(int x, int y) {
+        position.x = x;
+        position.y = y;
+    }
+    
+    /*
+     * TOSTRING
      */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public String toString() {
+        return "Type: Rectangle, width: "+width+", height: "+height+", fillChar: "+fillChar+", isFilled: "+filled+", position: "+position;
     }
 }
