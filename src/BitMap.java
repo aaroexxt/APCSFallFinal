@@ -9,6 +9,9 @@ public class BitMap {
 
     //Positional coordinates on the screen with (0, 0) at top left
     private Position position = new Position();
+    
+    //Show/hide?
+    private boolean isVisible = true;
 
     /*
     * CONSTRUCTORS
@@ -16,6 +19,7 @@ public class BitMap {
     public BitMap() {
         width = 40;
         height = 10;
+        isVisible = true;
 
         //charTableInternal = new char[height][width]; //Not needed right now because of no collision detection
         //regenCharTable(); //Not needed right now because of no collision detection
@@ -34,6 +38,7 @@ public class BitMap {
     			this.width = bmpRowLen;
     		}
     	}
+    	isVisible = true;
 
         //charTableInternal = new char[height][width]; //Not needed right now because of no collision detection
         //regenCharTable(); //Not needed right now because of no collision detection
@@ -53,6 +58,18 @@ public class BitMap {
 
     public int getHeight() {
         return height;
+    }
+    
+    public boolean getVisible() {
+    	return isVisible;
+    }
+    
+    public void show() {
+    	isVisible = true;
+    }
+    
+    public void hide() {
+    	isVisible = false;
     }
 
     /*

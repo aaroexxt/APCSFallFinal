@@ -5,6 +5,7 @@ public class RenderHandler {
 	private GameEngine g; //GameEngine object to keep track of
 	private int fps; //Render fps - 0 is "freeze frame"
 	private int frameCount; //How many frames have been rendered
+	private boolean customFCount = false; //Has the user specified a start frame count?
 	
 	private Supplier<Void> onEnd; //onEnd function - runs when render is finished. Supplier type because no args
 	private boolean onEndDefined = false;
@@ -26,7 +27,9 @@ public class RenderHandler {
 
 	public void renderFor(int timeAlive) {
 		//Reset frameCount
-		frameCount = 0;
+		if (!customFCount) {
+			frameCount = 0;
+		}
 		//Run it at least once
 		if (fps > 0) {
 	        Runnable renderer = new Runnable() {
@@ -120,5 +123,9 @@ public class RenderHandler {
 	public void setOnFrame(Function<Integer,Void> newFrame) {
 		onFrame = newFrame;
 		onFrameDefined = true; //Set flag so that it gets scheduled
+	}
+	public void setFrame(int newFCount) { //Mostly for debug
+		customFCount = true;
+		frameCount = newFCount;
 	}
 }

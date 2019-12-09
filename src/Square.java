@@ -10,6 +10,9 @@ public class Square {
 
     //Positional coordinates on the screen with (0, 0) at top left
     private Position position = new Position();
+    
+    //Show/hide?
+    private boolean isVisible = true;
 
     /*
     * CONSTRUCTORS
@@ -17,6 +20,7 @@ public class Square {
     public Square() {
         sideLength = 10;
         filled = true;
+        isVisible = true;
 
         //charTableInternal = new char[height][width]; //Not needed right now because of no collision detection
         //regenCharTable(); //Not needed right now because of no collision detection
@@ -28,6 +32,7 @@ public class Square {
     public Square(int x, int y, int sideLength, boolean filled) {
         this.sideLength = sideLength;
         this.filled = filled;
+        isVisible = true;
 
         //charTableInternal = new char[height][width]; //Not needed right now because of no collision detection
         //regenCharTable(); //Not needed right now because of no collision detection
@@ -64,6 +69,18 @@ public class Square {
     public void setFilled(boolean isFilled) {
         filled = isFilled;
         regenStringTable();
+    }
+    
+    public boolean getVisible() {
+    	return isVisible;
+    }
+    
+    public void show() {
+    	isVisible = true;
+    }
+    
+    public void hide() {
+    	isVisible = false;
     }
 
     /*

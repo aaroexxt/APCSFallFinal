@@ -11,6 +11,9 @@ public class Rectangle {
 
     //Positional coordinates on the screen with (0, 0) at top left
     private Position position = new Position();
+    
+    //Show/hide?
+    private boolean isVisible = true;
 
     /*
     * CONSTRUCTORS
@@ -19,6 +22,7 @@ public class Rectangle {
         width = 40;
         height = 10;
         filled = true;
+        isVisible = true;
 
         //charTableInternal = new char[height][width]; //Not needed right now because of no collision detection
         //regenCharTable(); //Not needed right now because of no collision detection
@@ -31,6 +35,7 @@ public class Rectangle {
         this.width = width*2; //because height is x2 in java, multiply width by 2
         this.height = height;
         this.filled = filled;
+        isVisible = true;
 
         //charTableInternal = new char[height][width]; //Not needed right now because of no collision detection
         //regenCharTable(); //Not needed right now because of no collision detection
@@ -75,6 +80,18 @@ public class Rectangle {
     public void setFilled(boolean isFilled) {
         filled = isFilled;
         regenStringTable();
+    }
+    
+    public boolean getVisible() {
+    	return isVisible;
+    }
+    
+    public void show() {
+    	isVisible = true;
+    }
+    
+    public void hide() {
+    	isVisible = false;
     }
 
     /*

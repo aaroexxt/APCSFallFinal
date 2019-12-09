@@ -51,6 +51,7 @@ public class GameEngineTest {
         
         Rectangle water = new Rectangle(0,4,35,1,true);
         water.setFillChar('~');
+        
         GameEngine canoeTest = new GameEngine(water, canoe);
         canoeTest.setDisplaySize(70, 25);
         RenderHandler RHCanoe = new RenderHandler(canoeTest);
@@ -78,9 +79,29 @@ public class GameEngineTest {
 //        };
 //        background.setStringTable(hoopAndCourt);
 //        GameEngine sceneTest = new GameEngine(background, player);
+        /*
+         * DEMO 5: TEXT
+         */
+        
+        TextGenerator tg = new TextGenerator();
+        BitMap text1 = new BitMap();
+        text1.setStringTable(tg.generateASCII("text test"));
+        
+        BitMap text2 = new BitMap();
+        text2.setStringTable(tg.generateASCII("APCS Fall Final"));
+        text2.setPosition(0, 6);
+        
+        BitMap textFrameNumber = new BitMap();
+        textFrameNumber.setStringTable(tg.generateASCII("Frame 0"));
+        textFrameNumber.setPosition(0, 12);
+        
+        GameEngine textTest = new GameEngine(text1, text2, textFrameNumber);
+        textTest.setDisplaySize(200, 25);
+        RenderHandler RHText = new RenderHandler(textTest);
+        RHText.setFPS(10);
         
         /*
-         * DEMO 5: COMPLEX SCENE ANIMATION
+         * DEMO 6: COMPLEX SCENE ANIMATION
          */
         
         
@@ -102,6 +123,11 @@ public class GameEngineTest {
     			return null;
         	}
         	public Void EndCanoe() {
+        		System.out.println("RenderCanoe ended");
+    			RHText.renderFor(7000);
+    			return null;
+        	}
+        	public Void EndText() {
         		System.out.println("Demo finished");
 				return null;
         	}
@@ -110,6 +136,7 @@ public class GameEngineTest {
         RHFlag.setOnEnd(endEvents::EndFlag); //pass using lambda
         RHScroll.setOnEnd(endEvents::EndScroll);
         RHCanoe.setOnEnd(endEvents::EndCanoe);
+        RHText.setOnEnd(endEvents::EndText);
         
         class OnFrameEvents { //Class to store onFrame events
         	public Void FrameScroll(int fCount) {
@@ -135,10 +162,15 @@ public class GameEngineTest {
         		canoe.setPosition((canoePos.x > 35) ? 0 : canoePos.x+3, canoePos.y);
         		return null;
         	}
+        	public Void FrameText(int fCount) {
+        		textFrameNumber.setStringTable(tg.generateASCII("Frame "+Integer.toString(fCount)));
+        		return null;
+        	}
         }
         OnFrameEvents frameEvents = new OnFrameEvents();
         RHScroll.setOnFrame(frameEvents::FrameScroll);
         RHCanoe.setOnFrame(frameEvents::FrameCanoe);
+        RHText.setOnFrame(frameEvents::FrameText);
         
         //Start first demo
         RHFlag.renderFor(2000);
