@@ -319,7 +319,7 @@ public class GameEngineTest2 {
 			"O--+=-=+--O5   2\"2     5    - -    5    -   -  5    ~  z     5    =   ="
         };
         counter = 1900;
-        for (int i=0; i<5; i++) {
+        for (int i=0; i<=5; i++) {
         	String liftingFrame[] = new String[lifting.length];
         	for (int j=0; j<lifting.length; j++) {
         		liftingFrame[j] = lifting[j].split("5")[i];
