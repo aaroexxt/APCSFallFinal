@@ -354,7 +354,7 @@ public class GameEngineTest2 {
         backgroundPositions.put(2260, new Position(20, 6));
 		
 		//RHmovie.setFrame(2100);
-		RHmovie.renderFor(100000);
+		RHmovie.renderFor(80000);
 
 	}
 
