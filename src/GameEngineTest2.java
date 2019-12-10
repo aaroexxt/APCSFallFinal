@@ -1,5 +1,15 @@
 import java.util.HashMap;
 
+//Another idea for implementation of a simpler hashmap layout
+/*public class Frame {
+	public String[] sprite;
+	public boolean showHide;
+	public Position position;
+}
+and then
+HashMap<Integer, Frame> background;
+*/
+
 public class GameEngineTest2 {
 
 	public static void main(String[] args) {
@@ -32,7 +42,9 @@ public class GameEngineTest2 {
 		//OnEnd and OnFrame events - check hashmaps and update
 		class OnEndEvents {
 			public Void EndMovie() {
+				System.out.println("d-emo render finished");
 				System.out.println("Thanks for watching, hope you enjoyed :)");
+				System.out.println("By AAron");
 				return null;
 			}
 		}
@@ -325,7 +337,7 @@ public class GameEngineTest2 {
         		liftingFrame[j] = lifting[j].split("5")[i];
         	}
         	stickmanSprites.put(counter, liftingFrame);
-        	counter+=40;
+        	counter+=25;
         }
         stickmanShowHide.put(1900, true);
         stickmanPositions.put(1900, new Position(0, 6));
@@ -352,6 +364,38 @@ public class GameEngineTest2 {
         });
         backgroundShowHide.put(2260, true);
         backgroundPositions.put(2260, new Position(20, 6));
+        
+        //Complete the requirements by using while loops
+        counter = 0;
+        int innerCounter = 0;
+        do {
+        	if (stickmanSprites.containsKey(counter)) {
+        		String[] sprite = stickmanSprites.get(counter);
+        		innerCounter = 0;
+        		System.out.println("Stickman sprite found on Frame#: "+counter);
+        		while (innerCounter < sprite.length) {
+        			System.out.println(sprite[innerCounter]);
+        			innerCounter++;
+        		}
+        	}
+        	if (backgroundSprites.containsKey(counter)) {
+        		String[] sprite = backgroundSprites.get(counter);
+        		innerCounter = 0;
+        		System.out.println("Background sprite found on Frame#: "+counter);
+        		while (innerCounter < sprite.length) {
+        			System.out.println(sprite[innerCounter]);
+        			innerCounter++;
+        		}
+        	}
+        	if (narratorDialogue.containsKey(counter)) {
+        		String dialogue = narratorDialogue.get(counter);
+        		System.out.println("Narrator dialogue found on Frame#: "+counter);
+        		System.out.println(dialogue);
+        	}
+        	counter++;
+        } while (counter < 2260);
+        
+        System.out.println("\n\nRender engine shapes to render:\n"+movie);
 		
 		//RHmovie.setFrame(2100);
 		RHmovie.renderFor(80000);

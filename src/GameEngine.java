@@ -134,7 +134,19 @@ public class GameEngine {
 
         for (int i=0; i<height; i++) {
             renderBuffer[i] = blankRow;
-            
+        }
+    }
+    
+    public void constructRenderBuffer(int overriddenHeight, int overriddenWidth) { //If you want a larger render buffer than is normally allotted
+        renderBuffer = new String[overriddenHeight];
+        
+        String blankRow = "";
+        for (int j=0; j<overriddenWidth; j++) {
+            blankRow+=" ";
+        }
+
+        for (int i=0; i<overriddenHeight; i++) {
+            renderBuffer[i] = blankRow;
         }
     }
 

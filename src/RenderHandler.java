@@ -1,6 +1,10 @@
 import java.util.concurrent.*;
 import java.util.function.*;
 
+/*
+ * Idea: separate threading for render, generate frame so that it doesn't overload eclipse terminal
+ */
+
 public class RenderHandler {
 	private GameEngine g; //GameEngine object to keep track of
 	private int fps; //Render fps - 0 is "freeze frame"

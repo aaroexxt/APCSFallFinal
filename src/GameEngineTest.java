@@ -1,5 +1,7 @@
+import java.util.Scanner;
+
 public class GameEngineTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         /*
          * DEMO 1: AMERICAN FLAG
          * This demo shows how compositing multiple shapes into a single GameEngine object can result in complex or cool graphics (or you could use a BitMap)
@@ -49,8 +51,25 @@ public class GameEngineTest {
         };
         canoe.setStringTable(canoeF1);
         
-        Rectangle water = new Rectangle(0,4,35,1,true);
+        
+        Rectangle water = new Rectangle(0, 0,30,1,true);
         water.setFillChar('~');
+        
+        
+        //Shape input from user
+        Scanner in = new Scanner(System.in);
+        System.out.println("Input X position:");
+        double userX = in.nextDouble();
+        userX *= Math.pow(Math.random()*100, 0); //Oh yeahhhhh
+        System.out.println("Input Y position:");
+        double userY = in.nextDouble();
+        userY *= Math.pow(Math.random()*100, 0); //Oh yeahhhhhhhhhhh
+        if (userX > 5 || userY > 25) { // sanity check
+        	throw new Exception();
+        } else {
+        	canoe.setPosition((int)userX, (int)userY);
+        	water.setPosition((int)userX,(int)userY+4);
+        }
         
         GameEngine canoeTest = new GameEngine(water, canoe);
         canoeTest.setDisplaySize(70, 25);
