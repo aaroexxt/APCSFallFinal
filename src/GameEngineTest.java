@@ -106,6 +106,9 @@ public class GameEngineTest {
         BitMap text1 = new BitMap();
         text1.setStringTable(tg.generateASCII("text test"));
         
+        System.out.println("Input seconds to render (recommended 7, in seconds):");
+        int renderTime = in.nextInt();
+        
         BitMap text2 = new BitMap();
         text2.setStringTable(tg.generateASCII("APCS Fall Final"));
         text2.setPosition(0, 6);
@@ -143,7 +146,7 @@ public class GameEngineTest {
         	}
         	public Void EndCanoe() {
         		System.out.println("RenderCanoe ended");
-    			RHText.renderFor(7000);
+    			RHText.renderFor(renderTime*1000);
     			return null;
         	}
         	public Void EndText() {
@@ -183,6 +186,34 @@ public class GameEngineTest {
         	}
         	public Void FrameText(int fCount) {
         		textFrameNumber.setStringTable(tg.generateASCII("Frame "+Integer.toString(fCount)));
+        		
+        		//Switch statement
+        		switch(fCount) {
+	        		case 5:
+	        	        text1.setStringTable(tg.generateASCII("h"));
+	        	        break;
+	        		case 10:
+	        	        text1.setStringTable(tg.generateASCII("hi"));
+	        	        break;
+	        		case 15:
+	        	        text1.setStringTable(tg.generateASCII("hi t"));
+	        	        break;
+	        		case 20:
+	        	        text1.setStringTable(tg.generateASCII("hi th"));
+	        	        break;
+	        		case 25:
+	        	        text1.setStringTable(tg.generateASCII("hi the"));
+	        	        break;
+	        		case 30:
+	        	        text1.setStringTable(tg.generateASCII("hi ther"));
+	        	        break;
+	        		case 35:
+	        	        text1.setStringTable(tg.generateASCII("hi there"));
+	        	        break;
+	        		case 99:
+	        			text1.setStringTable(tg.generateASCII("epstein didn't"));
+	        			text2.setStringTable(tg.generateASCII("kill himself"));
+        		}
         		return null;
         	}
         }
