@@ -334,7 +334,7 @@ public class GameEngineTest2 {
         for (int i=0; i<=5; i++) {
         	String liftingFrame[] = new String[lifting.length];
         	for (int j=0; j<lifting.length; j++) {
-        		liftingFrame[j] = lifting[j].split("5")[i];
+        		liftingFrame[j] = lifting[j].split("5")[i]; //#7 - string method
         	}
         	stickmanSprites.put(counter, liftingFrame);
         	counter+=25;
@@ -368,7 +368,7 @@ public class GameEngineTest2 {
         //Complete the requirements by using while loops
         counter = 0;
         int innerCounter = 0;
-        do {
+        do { //#4 - do while
         	if (stickmanSprites.containsKey(counter)) {
         		String[] sprite = stickmanSprites.get(counter);
         		innerCounter = 0;
@@ -382,7 +382,7 @@ public class GameEngineTest2 {
         		String[] sprite = backgroundSprites.get(counter);
         		innerCounter = 0;
         		System.out.println("Background sprite found on Frame#: "+counter);
-        		while (innerCounter < sprite.length) {
+        		while (innerCounter < sprite.length) { //#4 - regular while
         			System.out.println(sprite[innerCounter]);
         			innerCounter++;
         		}

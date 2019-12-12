@@ -35,7 +35,7 @@ public class RenderHandler {
 			frameCount = 0;
 		}
 		//Run it at least once
-		if (fps > 0) {
+		if (fps > 0) { //#1 - relational operator
 	        Runnable renderer = new Runnable() {
 	            public void run() {
 	            	//Render the frame

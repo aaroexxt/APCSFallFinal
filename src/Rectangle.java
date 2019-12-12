@@ -7,7 +7,7 @@ public class Rectangle {
 
     //charTable and StringTable for rendering
     private char[][] charTableInternal;
-    private String[] stringTableInternal;
+    private String[] stringTableInternal; //#12
 
     //Positional coordinates on the screen with (0, 0) at top left
     private Position position = new Position();
@@ -50,10 +50,10 @@ public class Rectangle {
     * Getters/Setters
     */
 
-    public int getWidth() {
+    public int getWidth() { //#10a
         return width;
     }
-    public void setWidth(int newWidth) {
+    public void setWidth(int newWidth) { //#10b
         width = newWidth;
         regenStringTable();
     }

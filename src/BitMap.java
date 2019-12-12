@@ -31,7 +31,7 @@ public class BitMap {
     public BitMap(int x, int y, String[] BMP) {
     	this.height = BMP.length;
     	//Find max width
-    	this.width = BMP[0].length();
+    	this.width = BMP[0].length(); //#14 - find max, #15 lol
     	for (int i=1; i<BMP.length; i++) {
     		int bmpRowLen = BMP[i].length();
     		if (bmpRowLen > this.width) {

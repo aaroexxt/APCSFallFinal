@@ -57,17 +57,18 @@ public class GameEngineTest {
         
         
         //Shape input from user
-        Scanner in = new Scanner(System.in);
+        Scanner in = new Scanner(System.in); //#17
         System.out.println("Input X position:");
-        double userX = in.nextDouble();
+        double userX = in.nextDouble(); //#3 - double
         userX *= Math.pow(Math.random()*100, 0); //Oh yeahhhhh
         System.out.println("Input Y position:");
         double userY = in.nextDouble();
         userY *= Math.pow(Math.random()*100, 0); //Oh yeahhhhhhhhhhh
-        if (userX > 5 || userY > 25) { // sanity check
-        	throw new Exception();
+        //#6 - calls to Math.pow and Math.random
+        if (userX > 5 || userY > 25) { // sanity check, #1 - relational operator
+        	throw new Exception(); //#2, if then else #1
         } else {
-        	canoe.setPosition((int)userX, (int)userY);
+        	canoe.setPosition((int)userX, (int)userY); //#8 - casting
         	water.setPosition((int)userX,(int)userY+4);
         }
         
@@ -167,7 +168,7 @@ public class GameEngineTest {
         		while (fCount > 20) {
         			fCount-=20;
         		}
-    			if (fCount <= 10) {
+    			if (fCount <= 10) { //#2 - if then else
         			rect.setPosition(rectPos.x+1, rectPos.y+1);
         		} else {
         			rect.setPosition(rectPos.x-1, rectPos.y-1);
@@ -188,7 +189,7 @@ public class GameEngineTest {
         		textFrameNumber.setStringTable(tg.generateASCII("Frame "+Integer.toString(fCount)));
         		
         		//Switch statement
-        		switch(fCount) {
+        		switch(fCount) { //#5 - switch statement
 	        		case 5:
 	        	        text1.setStringTable(tg.generateASCII("h"));
 	        	        break;
