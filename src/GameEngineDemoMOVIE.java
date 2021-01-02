@@ -10,7 +10,7 @@ and then
 HashMap<Integer, Frame> background;
 */
 
-public class GameEngineTest2 {
+public class GameEngineDemoMOVIE {
 
 	public static void main(String[] args) {
 		//Create textGenerator

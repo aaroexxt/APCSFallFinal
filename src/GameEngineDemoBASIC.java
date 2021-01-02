@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class GameEngineTest {
+public class GameEngineDemoBASIC {
     public static void main(String[] args) throws Exception {
         /*
          * DEMO 1: AMERICAN FLAG

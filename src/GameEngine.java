@@ -218,7 +218,7 @@ public class GameEngine { //#9 below, class design with methods, constructors, e
 	                                shapeInsertion+=shapeChar;
 	                            }
 	                        }
-	                        renderBuffer[yWithOff] = beforeShapeInsertion+shapeInsertion+afterShapeInsertion;
+	                        renderBuffer[yWithOff] = beforeShapeInsertion.concat(shapeInsertion).concat(afterShapeInsertion);
 	                    } catch (StringIndexOutOfBoundsException e) {
 	                        System.out.println("Error rendering shape at index: "+i+" because it's too thicc");
 	                    }
